@@ -7,8 +7,16 @@
     "type": "git",
     "url": "git://github.com/codeparty/d-bootstrap.git"
   },
+  "scripts": {
+    "test": "./node_modules/.bin/mocha"
+  },
   "dependencies": {},
   "devDependencies": {
+    "derby": "~0.6",
+    "derby-starter": "~0.1",
+    "mocha": "~1.17",
+    "zombie": "~2.0",
+    "coffee-script": "~1.7",
     "bootstrap": "git://github.com/twbs/bootstrap.git#v3.0.3"
   },
   "optionalDependencies": {},
