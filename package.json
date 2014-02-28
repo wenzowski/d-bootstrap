@@ -17,6 +17,7 @@
     "mocha": "~1.17",
     "zombie": "~2.0",
     "coffee-script": "~1.7",
+    "flour": "~0.5",
     "bootstrap": "git://github.com/twbs/bootstrap.git#v3.0.3"
   },
   "optionalDependencies": {},
