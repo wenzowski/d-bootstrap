@@ -9,7 +9,7 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "bootstrap": "git://github.com/twbs/bootstrap.git#v3.0.3"
+    "bootstrap": "git://github.com/twbs/bootstrap.git#v3.1.1"
   },
   "optionalDependencies": {},
   "engines": {}
