@@ -1,21 +1,24 @@
-server    = require('derby-starter/lib/server')
+component = require('../examples/dropdown/')
+app       = require('derby-starter/lib/server').setup(component, {})
+server    = require('http').createServer(app)
 port      = process.env.PORT || 2668
 Browser   = require('zombie')
-component = require('derby').createApp('dropdown', __filename)
-component.use(require('../../dropdown'))
-component.loadViews(__dirname)
+assert    = require('assert')
 
 describe 'dropdown component', ->
-  before ->
-    @app = server.setup(component, {})
-    @app.listen(port)
-
-  beforeEach ->
-    @browser = new Browser()
+  before (done) ->
+    server.listen port, (err) ->
+      throw err if err
+      done()
 
   context 'when an option is not selected', ->
+    before (done) ->
+      @browser = new Browser()
+      @browser.visit("http://localhost:#{port}").then(done, done)
+
     describe 'the button label', ->
-      it 'should be the default'
+      it 'should be the default', ->
+        assert.equal(@browser.location.pathname, "/")
       it 'should be customizable'
 
   context 'when an option is selected', ->
@@ -46,7 +49,5 @@ describe 'dropdown component', ->
         it 'is inherited from selected option'
 
   after ->
-    @app.close
-
-
+    server.close()
 
