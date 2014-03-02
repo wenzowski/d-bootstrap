@@ -5,49 +5,58 @@ port      = process.env.PORT || 2668
 Browser   = require('zombie')
 assert    = require('assert')
 
+before (done) ->
+  server.listen port, (err) ->
+    throw err if err
+    done()
+
 describe 'dropdown component', ->
   before (done) ->
-    server.listen port, (err) ->
-      throw err if err
-      done()
-
-  context 'when an option is not selected', ->
-    before (done) ->
-      @browser = new Browser()
-      @browser.visit("http://localhost:#{port}").then(done, done)
-
-    describe 'the button label', ->
-      it 'should be the default', ->
-        assert.equal(@browser.location.pathname, "/")
-      it 'should be customizable'
-
-  context 'when an option is selected', ->
-    describe 'the button label', ->
-      it 'is inherited from selected option'
+    # @browser = new Browser(debug: true)
+    @browser = new Browser()
+    @browser.visit("http://localhost:#{port}").then(done, done)
 
   context 'when the page is loaded', ->
+    describe 'the button label', ->
+      it 'should be the default', ->
+        assert.equal @browser.text('button#dropdown-toggle_1'), 'Select'
+        assert.equal @browser.text('div.selected'), ''
+
+      it 'should be customizable', ->
+        assert.equal @browser.text('button#dropdown-toggle-custom'), 'Custom'
+
     describe 'the dropdown menu', ->
-      it 'is hidden'
+      it 'is hidden', ->
+        assert.equal @browser.text('div.dropdown.open'), ''
 
   context 'when the button is clicked', ->
+    before (done) ->
+      @browser.pressButton("Select").then(done, done)
+
     describe 'the dropdown menu', ->
-      it 'is shown'
+      it 'is shown', ->
+        assert.equal @browser.text('div.dropdown.open'), 'Select MeandYou'
 
-    context 'and then clicked again', ->
-      describe 'the dropdown menu', ->
-        it 'is hidden'
+    context 'when an option is clicked', ->
+      before (done) ->
+        @browser.clickLink("Me").then(done, done)
 
-    context 'and then the document is clicked', ->
       describe 'the dropdown menu', ->
-        it 'is hidden'
-
-    context 'and then an option is clicked', ->
-      describe 'the dropdown menu', ->
-        it 'is hidden'
+        it 'is hidden', ->
+          assert.equal @browser.text('div.dropdown.open'), ''
 
       describe 'the button label', ->
-        it 'is inherited from selected option'
+        it 'is inherited from selected option', ->
+          assert.equal @browser.text('button#dropdown-toggle_1'), 'Me'
 
-  after ->
-    server.close()
+    context 'when the button is clicked again', ->
+      describe 'the dropdown menu', ->
+        it 'is hidden'
+
+    context 'when the document is clicked', ->
+      describe 'the dropdown menu', ->
+        it 'is hidden'
+
+after ->
+  server.close()
 
