@@ -9,7 +9,6 @@ describe 'dropdown component', ->
     ready = (window) ->
       window.document.readyState is 'complete'
     @browser = new Browser()
-    # @browser = new Browser(debug: true)
     @browser.visit(location)
     @browser.wait(ready, done)
 

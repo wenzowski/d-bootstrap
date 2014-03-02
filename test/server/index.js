@@ -11,3 +11,7 @@ app.get('/dropdown', function (page, model, params, next) {
   page.render('dropdownComponent')
 })
 
+app.get('/modal', function (page, model, params, next) {
+  page.render('modalComponent')
+})
+
