@@ -1,14 +1,8 @@
-component = require('../examples/dropdown/')
-app       = require('derby-starter/lib/server').setup(component, {})
-server    = require('http').createServer(app)
-port      = process.env.PORT || 2668
-Browser   = require('zombie')
-assert    = require('assert')
+Browser    = require('zombie')
+assert     = require('assert')
 
-before (done) ->
-  server.listen port, (err) ->
-    throw err if err
-    done()
+{location} = require('./runserver')
+location   = "#{location}/dropdown"
 
 describe 'dropdown component', ->
   before (done) ->
@@ -16,7 +10,7 @@ describe 'dropdown component', ->
       window.document.readyState is 'complete'
     @browser = new Browser()
     # @browser = new Browser(debug: true)
-    @browser.visit("http://localhost:#{port}/")
+    @browser.visit(location)
     @browser.wait(ready, done)
 
   context 'when the page is loaded', ->
@@ -59,7 +53,4 @@ describe 'dropdown component', ->
     context 'when the document is clicked', ->
       describe 'the dropdown menu', ->
         it 'is hidden'
-
-after ->
-  server.close()
 
