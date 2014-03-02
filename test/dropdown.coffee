@@ -12,9 +12,12 @@ before (done) ->
 
 describe 'dropdown component', ->
   before (done) ->
-    # @browser = new Browser(debug: true)
+    ready = (window) ->
+      window.document.readyState is 'complete'
     @browser = new Browser()
-    @browser.visit("http://localhost:#{port}").then(done, done)
+    # @browser = new Browser(debug: true)
+    @browser.visit("http://localhost:#{port}/")
+    @browser.wait(ready, done)
 
   context 'when the page is loaded', ->
     describe 'the button label', ->
@@ -30,16 +33,16 @@ describe 'dropdown component', ->
         assert.equal @browser.text('div.dropdown.open'), ''
 
   context 'when the button is clicked', ->
-    before (done) ->
-      @browser.pressButton("Select").then(done, done)
+    before ->
+      @browser.pressButton("Select")
 
     describe 'the dropdown menu', ->
       it 'is shown', ->
         assert.equal @browser.text('div.dropdown.open'), 'Select MeandYou'
 
     context 'when an option is clicked', ->
-      before (done) ->
-        @browser.clickLink("Me").then(done, done)
+      before ->
+        @browser.clickLink("Me")
 
       describe 'the dropdown menu', ->
         it 'is hidden', ->
