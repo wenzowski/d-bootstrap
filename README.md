@@ -2,6 +2,9 @@
 
 A Derby component library based on Twitter Bootstrap.
 
+This package does not contain any of the Bootstrap styles or fonts. Include
+them yourself using `app.loadStyles(__dirname + '/path/to/bootstrap/css')`.
+
 # Contributors wanted!
 
 This project should implement each of the [Bootstrap JavaScript plugins](http://getbootstrap.com/javascript/) as Derby components.
