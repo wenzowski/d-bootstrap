@@ -1,0 +1,10 @@
+language: node_js
+node_js:
+- '0.10'
+script: npm run ci
+env:
+  global:
+  - SAUCE_CONCURRENCY: 1
+  - SAUCE_USERNAME: w-d-bootstrap
+ - secure: R5vpvSvtkJePVMJK6eNyO/WWrA2r+1omQw6jSiZiaB35KTkGfM/f3Id7uUfR8l+kz7T2iIAlP/JdhB/GyhWtYaS3Q6ZiwfBTAWN/V72F6BuVawjFd8si2J/tjrcV5EraFweplEVLLc1S6qNY5LbXisKjLquBKiu3OeTysvNfUNc=
+

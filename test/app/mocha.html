@@ -1,0 +1,41 @@
+<Title:>
+  d-bootstrap tests
+
+<Head:>
+  <link rel="stylesheet" href="/node_modules/mocha/mocha.css">
+
+<Body:>
+  <div id="mocha"></div>
+
+  <script src="/node_modules/stacktrace-js/stacktrace.js"></script>
+  <script src="/node_modules/expect.js/index.js"></script>
+  <script src="/node_modules/mocha/mocha.js"></script>
+
+  <script>mocha.setup('bdd')</script>
+
+  <script src="/test/tests.mocha.js"></script>
+
+  <script>
+    (function () {
+      mocha.checkLeaks();
+      var runner = window.mochaPhantomJS ? mochaPhantomJS.run() : mocha.run();
+      var failed = [];
+
+      runner.on('fail', function(test, err){
+        failed.push({
+          title: test.title,
+          fullTitle: test.fullTitle(),
+          error: {
+            message: err.message,
+            stack: printStackTrace({e: err})
+          }
+        });
+      });
+
+      runner.on('end', function(){
+        runner.stats.failed = failed;
+        global.mochaResults = runner.stats;
+      });
+    }());
+  </script>
+
