@@ -1,5 +1,5 @@
-# Derby Boot [![Build Status](https://travis-ci.org/wenzowski/d-boot.png)](https://travis-ci.org/wenzowski/d-boot)
-[![Selenium Test Status](https://saucelabs.com/browser-matrix/w-d-boot.svg)](https://saucelabs.com/u/w-d-boot)
+# Derby Boot [![Build Status](https://travis-ci.org/wenzowski/d-bootstrap.png)](https://travis-ci.org/wenzowski/d-bootstrap)
+[![Selenium Test Status](https://saucelabs.com/browser-matrix/w-d-bootstrap.svg)](https://saucelabs.com/u/w-d-bootstrap)
 
 A Derby component library based on Twitter Bootstrap.
 
