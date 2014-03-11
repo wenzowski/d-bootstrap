@@ -54,6 +54,20 @@ gulp.task('path', function () {
     process.env.PATH = path.join(':')
 })
 
+// This task should to be entirely rewritten in gulp
+gulp.task('sauce', ['serve', 'path', 'mocha-phantomjs'], function (done) {
+  require('child_process')
+    .spawn('node', ['test/sauce.js'], { stdio: [0, 1, 2] })
+    .on('close', function (code, signal) {
+      if (code) gulp.code = code
+      done()
+    })
+})
+
+gulp.task('ci', ['sauce'], function () {
+  process.emit('exit') // hackish
+})
+
 gulp.on('end', function () {
   process.emit('exit')
 })

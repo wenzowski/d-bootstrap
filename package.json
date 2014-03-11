@@ -9,6 +9,7 @@
   },
   "scripts": {
     "watcher": "./node_modules/.bin/gulp watch",
+    "ci": "./node_modules/.bin/gulp ci",
     "test": "./node_modules/.bin/gulp test"
   },
   "dependencies": {},
