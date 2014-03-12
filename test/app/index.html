@@ -4,5 +4,15 @@
   <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.min.css">
 
 <Body:>
-  <h1>Bootstrap</h1>
+  <h1>Derby Components <small>for Twitter Bootstrap</small></h1>
+
+  <button on-click="exampleModal.show()" class="btn btn-default">
+    Show modal
+  </button>
+
+  <modal as="exampleModal">
+    <title>Modal</title>
+    <p>Some body text</p>
+    <action class="btn-primary">Ok</action>
+  </modal>
 

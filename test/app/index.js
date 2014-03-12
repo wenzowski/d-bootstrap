@@ -1,5 +1,8 @@
 var app = module.exports = require('derby').createApp('bootstrap', __filename)
 
+app.use(require('../../'))
+app.loadViews(__dirname)
+
 app.get('/', function (page) {
   page.render()
 })
