@@ -1,7 +1,7 @@
 var gulp = require('gulp')
 var batch = require('gulp-batch')
 
-var port = process.env.PORT || 8888
+var port = process.env.PORT || (process.env.PORT = 8888)
 var server = null
 
 gulp.task('default', function () {
