@@ -28,8 +28,9 @@
     "mocha-cloud": "https://github.com/wenzowski/mocha-cloud/archive/0.1.1.tar.gz",
     "stacktrace-js": "https://github.com/stacktracejs/stacktrace.js/archive/v0.6.0.tar.gz",
     "bootstrap": "https://github.com/twbs/bootstrap/archive/v3.0.3.tar.gz",
-    "racer": "~0.5.14",
-    "derby-starter": "https://github.com/wenzowski/derby-starter/archive/v0.1.1.tar.gz"
+    "racer": "git://github.com/wenzowski/racer.git#develop",
+    "derby": "git://github.com/wenzowski/derby.git#develop",
+    "derby-starter": "git://github.com/wenzowski/derby-starter.git#develop"
   },
   "optionalDependencies": {},
   "engines": {}

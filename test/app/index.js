@@ -1,18 +1,24 @@
-var app = module.exports = require('derby-starter/node_modules/derby').createApp('bootstrap', __filename)
+module.exports = function (watch) {
+  var app = require('derby').createApp('bootstrap', __filename)
 
-app.use(require('../../'))
-app.loadViews(__dirname)
+  if (watch) watch(app)
 
-app.get('/', function (page) {
-  page.render()
-})
+  app.use(require('../../'))
+  app.loadViews(__dirname)
 
-app.get('/mocha', function (page) {
-  page.render('mocha')
-})
+  app.get('/', function (page) {
+    page.render()
+  })
 
-app.on('ready', function (model) {
-  window.app = app
-  window.model = model
-})
+  app.get('/mocha', function (page) {
+    page.render('mocha')
+  })
+
+  app.on('ready', function (model) {
+    window.app = app
+    window.model = model
+  })
+
+  return app
+}
 
