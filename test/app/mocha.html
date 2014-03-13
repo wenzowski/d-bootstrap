@@ -18,6 +18,14 @@
   <script>
     (function () {
       mocha.checkLeaks();
+      mocha.globals(
+        [ 'DERBY_SCRIPT_HASH'
+        , 'MicroEvent'
+        , 'require'
+        , 'app'
+        , 'model'
+        ]
+      );
       var runner = window.mochaPhantomJS ? mochaPhantomJS.run() : mocha.run();
       var failed = [];
 

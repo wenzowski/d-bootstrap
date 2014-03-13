@@ -11,8 +11,11 @@ app.get('/mocha', function (page) {
   page.render('mocha')
 })
 
-app.on('ready', function (model) {
+app.on('model', function (model) {
+  if (global.window) window.model = model
+})
+
+app.on('ready', function () {
   window.app = app
-  window.model = model
 })
 
