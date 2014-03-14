@@ -1,51 +1,51 @@
 # Derby Boot [![Build Status](https://travis-ci.org/wenzowski/d-bootstrap.png)](https://travis-ci.org/wenzowski/d-bootstrap)
 [![Selenium Test Status](https://saucelabs.com/browser-matrix/w-d-bootstrap.svg)](https://saucelabs.com/u/w-d-bootstrap)
 
-A Derby component library based on Twitter Bootstrap.
+A Derby component library for Twitter Bootstrap.
 
 ## Install
 
-Install with `npm` by adding `d-bootstrap` to your `package.json`.
+1. Install with `npm` by adding `d-bootstrap` to your `package.json`.
 
-```
-npm i --save d-bootstrap
-```
+  ```
+  npm i --save d-bootstrap
+  ```
 
-Include all the bootstrap components in your `app`
+2. Include all the bootstrap components in your `app`
 
-```javascript
-var app = require('derby').createApp('myapp', __filename)
-app.use(require('d-bootstrap'))
-```
-...or just a few of them
+  ```javascript
+  var app = require('derby').createApp('myapp', __filename)
+  app.use(require('d-bootstrap'))
+  ```
+  ...or just a few of them.
 
-```javascript
-app.component(require('d-bootstrap/modal'))
-app.component(require('d-bootstrap/dropdown'))
-```
+  ```javascript
+  app.component(require('d-bootstrap/modal'))
+  app.component(require('d-bootstrap/dropdown'))
+  ```
 
-This package does not contain any of the Bootstrap styles or fonts
-which must be included separately. Using the official `bootstrap`
-tarball is recommended, as this will allow npm to verify this
-package's `peerDependencies` support the desired bootstrap css.
+3. Include the bootstrap css in your app.
 
-```
-npm i --save https://github.com/twbs/bootstrap/archive/v3.0.3.tar.gz
-```
+  ```javascript
+  var css = require('path').resolve('node_modules/bootstrap/dist/css/bootstrap')
+  app.loadStyles(css) // absolute path to css without file extension
+  ```
 
-include the bootstrap css in your app
+  This package does not contain any of the Bootstrap styles or fonts
+  which must be included separately. Using the official `bootstrap`
+  tarball is recommended, as this will allow npm to verify this
+  package's `peerDependencies` support the desired bootstrap css.
 
-```javascript
-var css = require('path').resolve('node_modules/bootstrap/dist/css/bootstrap')
-app.loadStyles(css) // absolute path to css file without extension
-```
+  ```
+  npm i --save https://github.com/twbs/bootstrap/archive/v3.0.3.tar.gz
+  ```
 
-and ensure the bootstrap assets are served
+4. Ensure the bootstrap assets are being served. In development, for example:
 
-```javascript
-var assets = require('path').resolve('node_modules/bootstrap/dist')
-require('derby-starter').run(app, {static: assets})
-```
+  ```javascript
+  var assets = require('path').resolve('node_modules/bootstrap/dist')
+  require('derby-starter').run(app, {static: assets})
+  ```
 
 ## MIT License
 Copyright (c) 2011-2014 by Nate Smith and Alexander Wenzowski
