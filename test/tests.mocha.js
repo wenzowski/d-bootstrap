@@ -15,7 +15,7 @@ describe('Derby', function () {
       it('is closed', function () {
         expect(this.model.get('open')).to.be(undefined)
       })
-      it('hides the menu options', function() {
+      it('hides its menu', function() {
         expect(this.container.className.split(' ').indexOf('open')).to.be(-1)
       })
       it('does not have a default value', function () {
@@ -40,7 +40,7 @@ describe('Derby', function () {
       it('is open', function () {
         expect(this.model.get('open')).to.be(true)
       })
-      it('shows the menu options', function() {
+      it('shows its menu', function() {
         expect(this.container.className.split(' ').indexOf('open')).to.not.be(-1)
       })
     })
