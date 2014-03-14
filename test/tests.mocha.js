@@ -5,10 +5,10 @@ describe('Derby', function () {
 
   describeComponent('Dropdown', function () {
     before(function () {
-      this.button  = document.getElementById('dropdown-toggle' + this.id)
-      this.element = this.button.parentNode
-      this.options = this.button.nextSibling.childNodes
-      this.option  = this.options[1].childNodes[0]
+      this.button    = this.instance.toggleButton
+      this.container = this.button.parentNode
+      this.options   = this.instance.menu.childNodes
+      this.option    = this.options[1].childNodes[0]
     })
 
     context('when the page is loaded', function() {
@@ -16,7 +16,7 @@ describe('Derby', function () {
         expect(this.model.get('open')).to.be(undefined)
       })
       it('hides the menu options', function() {
-        expect(this.element.className.split(' ').indexOf('open')).to.be(-1)
+        expect(this.container.className.split(' ').indexOf('open')).to.be(-1)
       })
       it('does not have a default value', function () {
         expect(this.model.get('value')).to.be(undefined)
@@ -41,7 +41,7 @@ describe('Derby', function () {
         expect(this.model.get('open')).to.be(true)
       })
       it('shows the menu options', function() {
-        expect(this.element.className.split(' ').indexOf('open')).to.not.be(-1)
+        expect(this.container.className.split(' ').indexOf('open')).to.not.be(-1)
       })
     })
 
