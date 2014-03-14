@@ -12,22 +12,24 @@ Modal.prototype.create = function(model, dom) {
   });
 };
 
-Modal.prototype.show = function() {
+Modal.prototype.show = function(done) {
   var model = this.model;
   this.emitDelayable('show', function() {
     model.set('show', true);
-    setTimeout(function() { 
+    setTimeout(function() {
       model.set('faded', true);
+      if (done) done();
     }, 0);
   });
 };
 
-Modal.prototype.hide = function(action) {
+Modal.prototype.hide = function(action, done) {
   var cancelled = this.emitCancellable('hide', action);
   if (cancelled) return;
   var model = this.model;
   model.set('faded', false);
   setTimeout(function() {
     model.set('show', false);
+    if (done) done();
   }, 300);
 };

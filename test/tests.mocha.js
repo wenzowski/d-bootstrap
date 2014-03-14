@@ -1,7 +1,67 @@
 describe('Derby', function () {
   waitFor('app', 'model')
 
-  })
+  describeComponent('Modal', function () {
+    before(function () {
+      this.element = document.getElementById('modal' + this.id)
+    })
+
+    it('is delayable')
+    it('is cancellable')
+    it('is closed when the escape key is clicked')
+    it('is closed when an element outside the dropdown is clicked')
+
+    context('when the page is loaded', function() {
+      it('is hidden', function () {
+        expect(this.model.get('show')).to.be(undefined)
+      })
+      it('is faded out', function () {
+        expect(this.model.get('faded')).to.be(undefined)
+      })
+      it('is not visible', function () {
+        expect(this.element.classList.contains('in')).to.be(false)
+      })
+      it('is not dimmed', function () {
+        expect(this.element.style.getPropertyValue('display')).to.be(null)
+      })
+    })
+
+    context('when it is opened', function() {
+      before(function (done) {
+        this.instance.show(done)
+      })
+      it('is shown', function () {
+        expect(this.model.get('show')).to.be(true)
+      })
+      it('is faded in', function () {
+        expect(this.model.get('faded')).to.be(true)
+      })
+      it('is visible', function () {
+        expect(this.element.classList.contains('in')).to.be(true)
+      })
+      it('is dimmed', function () {
+        expect(this.element.style.getPropertyValue('display')).to.be('block')
+      })
+    })
+
+    context('when it is closed', function() {
+      before(function (done) {
+        this.instance.hide(null, done)
+      })
+      it('is hidden', function () {
+        expect(this.model.get('show')).to.be(false)
+      })
+      it('is faded out', function () {
+        expect(this.model.get('faded')).to.be(false)
+      })
+      it('is not visible', function () {
+        expect(this.element.classList.contains('in')).to.be(false)
+      })
+      it('is not dimmed', function () {
+        expect(this.element.style.getPropertyValue('display')).to.be(null)
+      })
+    })
+  }) // end Modal
 
   describeComponent('Dropdown', function () {
     before(function () {
@@ -16,7 +76,7 @@ describe('Derby', function () {
         expect(this.model.get('open')).to.be(undefined)
       })
       it('hides its menu', function() {
-        expect(this.container.className.split(' ').indexOf('open')).to.be(-1)
+        expect(this.container.classList.contains('open')).to.be(false)
       })
       it('does not have a default value', function () {
         expect(this.model.get('value')).to.be(undefined)
@@ -41,7 +101,7 @@ describe('Derby', function () {
         expect(this.model.get('open')).to.be(true)
       })
       it('shows its menu', function() {
-        expect(this.container.className.split(' ').indexOf('open')).to.not.be(-1)
+        expect(this.container.classList.contains('open')).to.be(true)
       })
     })
 
@@ -73,7 +133,7 @@ describe('Derby', function () {
         expect(this.model.get('open')).to.be(false)
       })
     })
-  })
+  }) // end Dropdown
 
   function waitFor() {
     var globals = arguments
