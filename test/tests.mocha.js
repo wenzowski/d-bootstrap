@@ -52,11 +52,25 @@ describe('Derby', function () {
         emit(this.button, 'click')
         emit(this.option, 'click')
       })
+      it('is closed', function () {
+        expect(this.model.get('open')).to.be(false)
+      })
       it('is updated', function () {
         expect(this.model.get('value')).to.be('yes')
       })
       it('uses the selected option as the label', function() {
         expect(this.button.textContent.trim()).to.eql('Yay!')
+      })
+    })
+
+    context('when an element outside the dropdown is clicked', function () {
+      before(function () {
+        this.model.set('open', true)
+      })
+      it('is closed', function () {
+        expect(this.model.get('open')).to.be(true)
+        emit(document.getElementsByTagName('body')[0], 'click')
+        expect(this.model.get('open')).to.be(false)
       })
     })
   })
