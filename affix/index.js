@@ -67,7 +67,13 @@ Affix.prototype._offset = function () {
 }
 
 Affix.prototype._top = function () {
-  return this.container.getBoundingClientRect().top
+  return this._topOffset() - window.scrollY
+}
+
+Affix.prototype._topOffset = function () {
+  var offset = this.container.getBoundingClientRect().top + window.scrollY
+  this._topOffset = function () { return offset }
+  return offset
 }
 
 Affix.prototype._bottom = function () {
