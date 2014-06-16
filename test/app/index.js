@@ -1,7 +1,9 @@
+var path = require('path')
 var app = module.exports = require('derby').createApp('bootstrap', __filename)
 
 app.use(require('../../'))
 app.loadViews(__dirname)
+app.loadStyles(path.join(__dirname, '../../node_modules/bootstrap/dist/css/bootstrap.min.css'))
 
 app.get('/', function (page) {
   page.render()

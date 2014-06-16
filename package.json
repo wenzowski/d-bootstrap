@@ -8,6 +8,7 @@
     "url": "git://github.com/codeparty/d-bootstrap.git"
   },
   "scripts": {
+    "start": "node ./test/server.js",
     "watcher": "./node_modules/.bin/gulp watch",
     "ci": "./node_modules/.bin/gulp ci",
     "test": "./node_modules/.bin/gulp test"
@@ -28,11 +29,8 @@
     "mocha-cloud": "https://github.com/wenzowski/mocha-cloud/archive/0.1.1.tar.gz",
     "stacktrace-js": "https://github.com/stacktracejs/stacktrace.js/archive/v0.6.0.tar.gz",
     "bootstrap": "https://github.com/twbs/bootstrap/archive/v3.0.3.tar.gz",
-    "racer": "git://github.com/wenzowski/racer.git#develop",
-    "derby": "git://github.com/wenzowski/derby.git#feature/gulp",
-    "derby-parsing": "git://github.com/wenzowski/derby-parsing.git#develop",
-    "derby-templates": "git://github.com/wenzowski/derby-templates.git#develop",
-    "derby-starter": "git://github.com/wenzowski/derby-starter.git#develop"
+    "derby": "~0.6.0-alpha19",
+    "derby-starter": "https://github.com/wenzowski/derby-starter/archive/v0.2.0-p1.tar.gz"
   },
   "optionalDependencies": {},
   "engines": {}

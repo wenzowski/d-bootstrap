@@ -56,7 +56,7 @@ gulp.task('mocha-phantomjs', ['serve', 'path'], function (done) {
 gulp.task('serve', function (done) {
   if (server) return done()
   var serving = false
-  server = require('child_process').fork('server', [], {silent: true})
+  server = require('child_process').fork('test/server', [], {silent: true})
   server.stderr.pipe(process.stderr)
   server.stdout.on('data', function (data) {
     process.stderr.write(data)

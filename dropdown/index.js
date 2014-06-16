@@ -22,12 +22,11 @@ Dropdown.prototype.select = function(option) {
 };
 
 Dropdown.prototype.label = function(value) {
-  var options = this.model.get('options') || [];
-  for (var i = 0, len = options.length; i < len; i++) {
-    var option = options[i];
-    if (value === optionValue(option)) {
-      return option.content;
-    }
+  var options = (this.model.get('options') || []);
+  var keys = Object.keys(options);
+  for (var i = keys.length; i--;) {
+    var o = (options[keys[i]] || {});
+    if (value === o.value) return o.content.template.content[0].data;
   }
   return this.model.get('prompt') || 'Select';
 };
